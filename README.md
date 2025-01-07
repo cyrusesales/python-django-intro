@@ -1,1 +1,1 @@
-"# python-django-intro" 
+"# python-django-models-and-migarations" 
