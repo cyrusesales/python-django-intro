@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views # import view.py
+from django.conf.urls.static import static # import to upload image
+from django.conf import settings # import to upload image
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,3 +26,6 @@ urlpatterns = [
     path('about/', views.about), # about page function in views.py
     path('posts/', include('posts.urls')) # to look inside posts app
 ]
+
+# used both imported at the top to use in url patterns
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

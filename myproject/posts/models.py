@@ -8,6 +8,8 @@ class Post(models.Model):
     body = models.TextField()
     slug = models.SlugField()
     date = models.DateTimeField(auto_now_add=True)
+    # means not requiring an image if we dont have one
+    banner = models.ImageField(default='fallback.png', blank=True)
 
     def __str__(self):
         return self.title
