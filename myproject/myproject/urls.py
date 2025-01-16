@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage), # homepage function in views.py
     path('about/', views.about), # about page function in views.py
-    path('posts/', include('posts.urls')) # to look inside posts app
+    path('posts/', include('posts.urls')), # to look inside posts app
+    path('users/', include('users.urls')) # to look inside posts app
 ]
 
 # used both imported at the top to use in url patterns
