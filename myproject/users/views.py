@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect # after successfully submitted it will  redirect to post list
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm # importing a form
-from django.contrib.auth import login # contrib.auth to log user in
+from django.contrib.auth import login, logout # contrib.auth to log user in, import logout
 
 # Create your views here.
 def register_view(request):
@@ -24,3 +24,8 @@ def login_view(request):
     else: # GET request
          form = AuthenticationForm()
     return render(request, "users/login.html", { "form": form })
+
+def logout_view(request):
+     if request.method == "POST":
+          logout(request)
+          return redirect("posts:list")
