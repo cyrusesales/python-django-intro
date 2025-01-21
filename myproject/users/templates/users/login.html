@@ -9,6 +9,10 @@
     <form class="form-with-validation" action="/users/login/" method="post"> <!--this is from urls.py -->
         {% csrf_token %}
         {{ form }}
+        <!--this input will only be added if exist--> 
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value={{ request.GET.next }} />
+        {% endif %}
         <button class="form-submit">Submit</button>
     </form>
 {% endblock %}

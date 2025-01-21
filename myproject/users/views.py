@@ -20,7 +20,11 @@ def login_view(request):
           form = AuthenticationForm(data=request.POST)
           if form.is_valid():
                login(request, form.get_user()) # login to request and it will return user
-               return redirect("posts:list")
+               #getting value of field we name next in the form
+               if 'next' in request.POST:
+                    return redirect(request.POST.get('next'))
+               else:
+                    return redirect("posts:list")
     else: # GET request
          form = AuthenticationForm()
     return render(request, "users/login.html", { "form": form })
