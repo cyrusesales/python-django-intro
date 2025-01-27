@@ -15,12 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path # re_path is regular expression
 from . import views # import view.py
 from django.conf.urls.static import static # import to upload image
 from django.conf import settings # import to upload image
+from django.views.static import serve # server func used during development
 
 urlpatterns = [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('admin/', admin.site.urls),
     path('', views.homepage), # homepage function in views.py
     path('about/', views.about), # about page function in views.py
@@ -29,4 +32,4 @@ urlpatterns = [
 ]
 
 # used both imported at the top to use in url patterns
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

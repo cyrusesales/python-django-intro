@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>User Login</h1>
-    <form class="form-with-validation" action="/users/login/" method="post"> <!--this is from urls.py -->
+    <form class="form-with-validation" action="{% url 'users:login' %}" method="post"> <!--action value is from urls.py-->
         {% csrf_token %}
         {{ form }}
         <!--this input will only be added if exist--> 
